@@ -363,7 +363,7 @@ export default function FirstSection() {
           onClick={() => {
             const element = document.getElementById("second-section");
             if (element) {
-              element.scrollIntoView({ behavior: "smooth" });
+              element.scrollIntoView({ behavior: "auto" });
             }
           }}
         >

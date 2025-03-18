@@ -165,18 +165,6 @@ export default function SidebarContainer() {
           top: offset,
           behavior: 'smooth'
         });
-
-        // Add additional smoothness with GSAP animation on the body
-        gsap.to('body', {
-          duration: 1.5,
-          ease: "power1.inOut",
-          onStart: () => {
-            document.body.style.scrollBehavior = 'smooth';
-          },
-          onComplete: () => {
-            document.body.style.scrollBehavior = 'auto';
-          }
-        });
       }
     }
   };
@@ -221,8 +209,39 @@ export default function SidebarContainer() {
                     <path d="M0 0.5C0 0.223858 0.223858 0 0.5 0H17.5C17.7761 0 18 0.223858 18 0.5V1.5C18 1.77614 17.7761 2 17.5 2H0.5C0.223858 2 0 1.77614 0 1.5V0.5Z" fill="#F1F9FC" />
                   </svg>
                 </div>
+                {/* on group hover, show the label when the section is not active and our scrollY is > 300 */}
+                <div className={`absolute z-[-1] -left-[5px] -top-[5px] -bottom-[5px] opacity-0 pointer-events-none group-hover:pointer-events-auto ${scrollY > 100 && "group-hover:opacity-100"}`}>
+                  <div className="flex gap-x-[10px] items-center pl-[5px] pr-[5px] rounded-full w-full h-full bg-[#B7DDE8] whitespace-nowrap">
+                    <div
+                      className="bg-eth-logo flex items-center justify-center rounded-full transition-all duration-300 cursor-pointer"
+                      style={{
+                        width: `32px`,
+                        height: `32px`,
+                      }} >
+                      <div className={`overflow-visible w-[32px] h-[32px] relative`}>
+                      </div>
+                    </div>
+                    <div className="headline-md" style={{ paddingRight: activeSectionIndex === 0 ? 10 : 0 }}>
+                      Back to top
+                    </div>
+                    {Sections.slice(0, activeSectionIndex || 0).map((section, index) => (
+                      <div
+                        key={section.sectionId}
+                        className="rounded-full bg-eth-logo flex items-center justify-center w-[32px] h-[32px] group-hover:pointer-events-auto cursor-pointer"
+                        onClick={() => {
+                          const element = document.getElementById(section.sectionId);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                      >
+                        <Icon icon={`${section.icon}-monochrome`} className="text-ice" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className={`absolute -right-[30px] ${scrollY > 100 && "group-hover:opacity-0"} transition-opacity duration-100`}>
+              <div className={`absolute pointer-events-none -right-[30px] ${scrollY > 100 && "group-hover:opacity-0"} transition-opacity duration-100`}>
                 <div className={`logo-title flex gap-x-[30px] items-center group-hover:pointer-events-none ${scrollY > 100 ? "translate-x-[20px] scale-[23.07%] text-[#B0B7C3]" : "scale-100 text-blue1"} transition-all duration-300`}>
                   <ETHisMoneyTitle />
                 </div>

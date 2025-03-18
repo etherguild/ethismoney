@@ -42,6 +42,11 @@ iframe {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
   }
+  /* #sixth-section {
+    scroll-snap-type: y proximity !important;
+    scroll-snap-align: start center !important;
+    scroll-snap-stop: none !important;
+  } */
 }
 
 /* 

@@ -118,7 +118,7 @@ export default function Page() {
             <MobileEthIsMoneyBecause />
           </div>
         </Section>
-        <Section name="sixth" head={Sections[4].label} className="flex flex-col">
+        <Section name="sixth" head={Sections[4].label} className="flex flex-col desktop:pb-[320px]">
           <div className="w-full">
             <div className="flex flex-col desktop:flex-row gap-[30px] w-full">
               <div className="px-[15px] desktop:px-0 flex flex-col gap-y-[30px] -mt-[15px]">
@@ -205,7 +205,7 @@ export default function Page() {
             </div>
             {/* Donate and mint your NFT section */}
             <div className="px-[15px] desktop:px-0 mt-[40px] flex flex-col gap-y-[20px]">
-              <div className="headline-lg desktop:headline-xl text-blue2">Donate and mint your NFT for Discord access</div>
+              <div className="headline-lg desktop:headline-xl text-blue2" style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}>Donate and mint your NFT for Discord access</div>
               <div className="highlight-text-lg">
                 By donating the stated amount you support and gain access to the exclusive Discord and can shape the ETH is Money movement with everyone.
               </div>
